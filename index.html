@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inventariado</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="header">
+      <h1>Inventario el Fizz</h1>
+      <p class="azul">Inntario de productos MacMainPack</p>
+    </div>
+
+    <div class="content">
+      <div class="left">
+        <h2>Agregar productos</h2>
+        <div class="content-info">
+          <form>
+            <div class="field">
+              <label>codigó de producto:</label>
+              <input id="id" type="number" size="35" />
+            </div>
+            <div class="field">
+              <label>Nombre:</label>
+              <input id="name" type="text" size="35" />
+            </div>
+            <div class="field">
+              <label>Cantidad:</label>
+              <input id="mount" type="number" />
+            </div>
+            <div class="field">
+              <label>Precio:</label>
+              <input id="price" type="number" />
+            </div>
+            <div class="field">
+              <input id="btnRegister" type="button" value="Registrar" />
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="right">
+        <h2>Inventario</h2>
+        <div class="content-info">
+          <table id="registry">
+            <tr>
+              <th>Codigo de producto</th>
+              <td><input id="idBrowser" type="number" /></td>
+              <td>
+                <input id="btnBrowser" type="button" value="Buscar" />
+              </td>
+            </tr>
+            <tr>
+              <th>Hola que tal soy de ejemplo aun</th>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="divData">
+      <div class="left">
+        <table id="tableActions">
+          <tr><th>Actions</th></tr>
+        </table>
+      </div>
+    </div>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="inventario.js" type="module"></script>
+  </body>
+</html>
