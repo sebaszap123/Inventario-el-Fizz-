@@ -38,6 +38,8 @@ class Inventario {
     }
     Swal.fire("Error", "No ingresaste ningun codigo", "error");
   };
+  // error con el commit
+  HolaCrayola(){}
   // Funciona para agregar los datos a la tabla (sin iterar) tal vez con 1 se registran normal y con -1 se registra inverso? (con el row?)
   listar = () => {
     let product;
