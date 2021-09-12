@@ -48,12 +48,23 @@
             <tr>
               <th>Codigo de producto</th>
               <td><input id="idBrowser" type="number" /></td>
-              <td>
-                <input id="btnBrowser" type="button" value="Buscar" />
-              </td>
+              <td id="btns"></td>
             </tr>
             <tr>
-              <th>Hola que tal soy de ejemplo aun</th>
+              <th>Modificar</th>
+              <td><input id="update" type="number" /></td></td>
+              <td id="btnOnUpdate"></td>
+            </tr>
+            <tr>
+              <th>Listar</th>
+              <td id="btnList"></td>
+            </tr>
+            <tr>
+              <th>Codigo de producto</th>
+              <td><input id="idBrowser" type="number" /></td>
+              <td>
+                <input id="btnDelete" type="button" value="Eliminar" />
+              </td>
             </tr>
           </table>
         </div>
@@ -77,7 +88,6 @@
         </tr>
       </table>
     </div>
-    <input id="btnTest" type="button" value="Hola soy una prueba">
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="inventario.js" type="module"></script>
   </body>
