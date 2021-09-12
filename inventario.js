@@ -9,11 +9,6 @@ class Inventario {
     this.inventary = new Array();
     this.tellActions = new TellActions()
   }
-  awa() {
-    document.createElement("h1");
-    document.querySelector("#logo").innerHTML =
-      "<P> AWA de owo ${this.uwu}</p>";
-  }
   addProduct = () => {
     let product = Product.createProduct();
     if (product) {
