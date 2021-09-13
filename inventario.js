@@ -36,10 +36,12 @@ class Inventario {
   listing = () => {
     let product;
     this.remakeTable()
-    for(var i=0; i<this.inventary.length; i++){
-      if(this.inventary[i] !== null){
-        product = this.inventary[i]
-        this._showList(product)
+    if(this.inventary.length !== 0){
+      for(var i=0; i<this.inventary.length; i++){
+        if(this.inventary[i] !== null){
+          product = this.inventary[i]
+          this._showList(product)
+        }
       }
     }
   }
@@ -48,10 +50,12 @@ class Inventario {
     var max = this.inventary.length
     var count = max
     this.remakeTable()
-    for(var i=0; max>i; i++){
-      count--
-      if(this.inventary[count] !== null){
-          this._showList(this.inventary[count])
+    if(this.inventary.length !== 0){
+      for(var i=0; max>i; i++){
+        count--
+        if(this.inventary[count] !== null){
+            this._showList(this.inventary[count])
+        }
       }
     }
 }
@@ -150,12 +154,12 @@ remakeTable(){
   }
   deleteProduct = (product) => {
     var poped;
-    var toDelete;
     var arrayPoped = new Array();
     let max = this.inventary.length
     for(let i = -1; i < max; i++){
       max--
       if(this.inventary[max].getId() == product.getId()){
+        this.tellActions.tell(`Se elimino el producto ${product.getName()} con el id: ${product.getId()}`)
         this.inventary.pop()
       }
       poped = this.inventary.pop();
