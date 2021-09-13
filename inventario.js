@@ -13,24 +13,33 @@ class Inventario {
     btnListInverse.addEventListener("click", this.listInverse)
   }
   addProduct = () => {
+    let passAdd = false;
     let product = Product.createProduct();
     if (product) {
-      this.limitInventaryPush(product);
+      passAdd = this.limitInventaryPush(product);
+    }
+    if(passAdd) {
+      this.inventary.push(product);
+      this.tellActions(`Se agrego el producto ${product.getName()} con el id: ${product.getId()}`)
+      Swal.fire('Felicidades!', 'Agregaste un producto :3', 'success')
     }
   };
   limitInventaryPush(product){
     if(this.inventary.length < 20){
-      this.inventary.push(product);
-      this.tellActions.tell(
-        `producto agregado: ${product.getName()} con codigo: ${product.getId()}`
-      );
-      Swal.fire("Perfecto!", "Has agregado tu producto", "success");
-    }else {
-      Swal.fire("Error!", "Ya no queda espacio en el inventario", "error");
-      this.tellActions.tell(
-        `producto no agregado: ${product.getName()} con codigo: ${product.getId()}`
-      );
+      return this.noRepeatId(product);
     }
+    this.tellActions.tell('Inventario Lleno')
+    Swal.fire('Lo siento :c', 'El inventario comio demasiado', 'error')
+    return false;
+  }
+  noRepeatId(product){
+    let pass = true;
+    for(let i=0; i<this.inventary.length; i++){
+      if(this.inventary[i].getId() === product.getId()){
+        pass = false;
+      }
+    }
+    return pass
   }
   // Funciona para agregar los datos a la tabla (sin iterar) tal vez con 1 se registran normal y con -1 se registra inverso? (con el row?)
   listing = () => {
@@ -193,7 +202,7 @@ remakeTable(){
     btnBrowser.setAttribute("id", `btnBrowser`)
 
     btnList.setAttribute('type', 'button');
-    btnList.setAttribute('value', 'Listar')
+    btnList.setAttribute('value', 'Listar Normal')
     btnList.setAttribute('id', 'btnAcomodar')
     
     btnListInverse.setAttribute('type', 'button');
