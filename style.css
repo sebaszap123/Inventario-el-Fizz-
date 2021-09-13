@@ -8,20 +8,20 @@ h1 {
   font-weight: 700;
   font-size: 40px;
   text-align: center;
-  color: #72147e;
+  color: #827cea
 }
 
 h2 {
   padding-top: 10px;
   padding-bottom: 20px;
   text-align: center;
-  color: #ff5200;
+  color: #968eff
 }
 h3 {
   padding-top: 10px;
   padding-bottom: 20px;
   text-align: center;
-  color: #2f00ff;
+  color: #7babea
 }
 p {
   text-align: center;
@@ -34,6 +34,7 @@ table {
 
 label {
   display: block;
+  color:#7babea;
 }
 
 input {

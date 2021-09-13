@@ -21,25 +21,17 @@ class Inventario {
   limitInventaryPush(product){
     if(this.inventary.length < 20){
       this.inventary.push(product);
-      console.log(this.inventary)
       this.tellActions.tell(
         `producto agregado: ${product.getName()} con codigo: ${product.getId()}`
       );
       Swal.fire("Perfecto!", "Has agregado tu producto", "success");
     }else {
-      Swal.fire("Error!", "Ya no quedaespacio en el inventario", "error");
-      console.log(this.inventary)
+      Swal.fire("Error!", "Ya no queda espacio en el inventario", "error");
+      this.tellActions.tell(
+        `producto no agregado: ${product.getName()} con codigo: ${product.getId()}`
+      );
     }
   }
-  browseProduct = () => {
-    let inpIdToBrowse = document.querySelector("#idBrowser");
-    let idToBrowse = inpIdToBrowse.value;
-    if (idToBrowse) {
-      this.browser(idToBrowse);
-      return true;
-    }
-    Swal.fire("Error", "No ingresaste ningun codigo", "error");
-  };
   // Funciona para agregar los datos a la tabla (sin iterar) tal vez con 1 se registran normal y con -1 se registra inverso? (con el row?)
   listing = () => {
     let product;
@@ -68,7 +60,6 @@ remakeTable(){
   table.innerHTML = '<tr><th id="product">Producto</th><th id="id">ID</th><th id="amount">Cantidad</th><th id="price">Precio</th><th id="totalPrice">Precio Total</th></tr>'
 }
   _showList = (product) =>{
-    console.log('itero')
         let table = document.querySelector("#list");
         let row = table.insertRow(-1);
         let colName = row.insertCell(0);
@@ -89,25 +80,92 @@ remakeTable(){
         colPrice.innerHTML = product.getPrice();
         colTotalPrice.innerHTML = product.getMount() * product.getPrice();
   }
+  browseProduct = () => {
+    let inpIdToBrowse = document.querySelector("#idBrowser");
+    let idToBrowse = inpIdToBrowse.value;
+    if (idToBrowse) {
+      let browseProduct = this.browser(idToBrowse);
+      if(browseProduct !== false && browseProduct !== undefined){
+        Swal.fire(
+          "En existencia",
+          `producto: ${browseProduct.getName()}`,
+          "success"
+        );
+      }else if(!browseProduct){
+        Swal.fire(
+          "Lo sentimos :c",
+          `el producto con id: ${idToBrowse}, no existe`,
+          "error"
+        );
+      }
+    } else {
+      Swal.fire("Error", "No ingresaste ningun codigo", "error");
+    }
+  };
+
   browser(id) {
     for (let i = 0; i < this.inventary.length; i++) {
       if (this.inventary[i].getId() === id) {
-        Swal.fire(
-          "En existencia",
-          `producto: ${this.inventary[i].getName()}`,
-          "success"
-        );
-        return this.inventary[i];
+        return this.inventary[i]
       }
     }
-    Swal.fire('Error', 'El producto no existe', 'error')
     return false;
   }
-  onUpdate = () => {
-
+  onReplace = () => {
+    let update = document.querySelector("#update");
+    let numUpdate = update.value -1;
+    if((this.inventary.length) >= numUpdate) {
+      let product = Product.createProduct();
+      if(numUpdate !== "" && numUpdate !== -1 && product !== false){
+        if(product){
+          this.inventary[numUpdate] = product;
+          Swal.fire('Bien!', 'Se modifico el producto', 'success')
+          return;
+        }
+      } else {
+        Swal.fire('Error', 'Faltan datos del producto ', 'error')
+      }
+    } else {
+      Swal.fire('Error', 'No existe este espacio en el inventario', 'error')
+    }
   }
-  onDelete = () => {}
-  onReplace = () => {}
+  onDelete = () => {
+    let inpIdToBrowse = document.querySelector("#idBrowser");
+    let idToBrowse = inpIdToBrowse.value;
+    if (idToBrowse) {
+      let browseProduct = this.browser(idToBrowse);
+      if(browseProduct !== false && browseProduct !== undefined){
+        console.log(browseProduct)
+        this.deleteProduct(browseProduct)
+      }else if(!browseProduct){
+        Swal.fire(
+          "Lo sentimos :c",
+          `el producto con id: ${idToBrowse}, no necesita ser borrado, porque no existe, como el amor de ella`,
+          "error"
+        );
+      }
+    } else {
+      Swal.fire("Error", "No ingresaste ningun codigo", "error");
+    }
+  }
+  deleteProduct = (product) => {
+    var poped;
+    var toDelete;
+    var arrayPoped = new Array();
+    let max = this.inventary.length
+    for(let i = -1; i < max; i++){
+      max--
+      if(this.inventary[max].getId() == product.getId()){
+        this.inventary.pop()
+      }
+      poped = this.inventary.pop();
+      arrayPoped.push(poped); 
+    }
+    this.inventary = arrayPoped;
+  }
+  invertArray = (array, max) =>{
+    
+  }
   loadBtns = () => {
   let column = document.querySelector("#btns")
   let colOnUpdate = document.querySelector("#btnOnUpdate")
@@ -140,8 +198,6 @@ remakeTable(){
 
     btnDelete.addEventListener('click', () => {
         this.onDelete();
-        Swal.fire('Logrado', 'Producto eliminado', 'success');
-        console.log(this._registry);
     })
     btnReplace.addEventListener('click', () => {
       this.onReplace();
