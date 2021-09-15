@@ -85,6 +85,7 @@ class Inventario {
         }
       }
     }
+    this.tellActions.tell('Enlistado inverso') 
 }
 remakeTable(){
   let table = document.querySelector("#list");
