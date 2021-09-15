@@ -24,6 +24,9 @@ class Inventario {
     if (product) {
       passAdd = this.limitInventaryPush(product);
     }
+    if(!product){
+      Swal.fire('Ups...', 'faltan datos por agregar', 'error');
+    }
     if(passAdd) {
       this.inventary.push(product);
       this.tellActions.tell(`Se agrego el producto ${product.getName()} con el id: ${product.getId()}`)
@@ -31,7 +34,7 @@ class Inventario {
     }
     if(!passAdd) {
       this.tellActions.tell('No se agrego el producto');
-      Swal.fire('Error', 'Faltan datos por agregar al producto', 'error')
+      Swal.fire('Error', `El producto con el id: ${product.getId()} ya existe`, 'error')
     }
   };
   // No ocupan tellActions
