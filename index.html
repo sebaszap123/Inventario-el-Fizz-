@@ -15,7 +15,7 @@
 
     <div class="content">
       <div class="left">
-        <h2>Agregar productos</h2>
+        <h2>Agregar/Modificar productos</h2>
         <div class="content-info">
           <form>
             <div class="field">
@@ -35,7 +35,8 @@
               <input id="price" type="number" />
             </div>
             <div class="field">
-              <input id="btnRegister" type="button" value="Registrar" />
+              <input class="button" id="btnRegister" type="button" value="Registrar" />
+              <input class="button" id="btnReplace" type="button" value="Modificar" />
             </div>
           </form>
         </div>
@@ -51,10 +52,6 @@
               <td id="btns"></td>
             </tr>
             <tr>
-              <th>Modificar</th>
-              <td><input id="update" type="number" /></td></td>
-              <td id="btnOnUpdate"></td>
-            </tr>
             <tr>
               <th>Listar</th>
               <td id="btnList"></td>
@@ -82,6 +79,6 @@
       </table>
     </div>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    <script src="inventario.js" type="module"></script>
+    <script src="class/inventario.js" type="module"></script>
   </body>
 </html>
