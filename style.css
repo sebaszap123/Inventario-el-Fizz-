@@ -47,6 +47,7 @@ th {
 }
 .button{
   font-weight: bold;
+  color: #ffffff;
   cursor: pointer;
   margin: 0 10px 20px 0;
   background: #827cea;

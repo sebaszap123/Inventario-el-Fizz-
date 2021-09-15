@@ -9,10 +9,12 @@ class Inventario {
     let btnList = document.querySelector("#btnAcomodar");
     let btnListInverse  = document.querySelector("#btnListInverse");
     let btnReplace = document.querySelector("#btnReplace")
+    let btnCleanActions = document.querySelector("#cleanActions");
     this.btnAddProduct = btnInpAdd.addEventListener("click", this.addProduct);
     btnList.addEventListener("click", this.listing)
     btnListInverse.addEventListener("click", this.listInverse)
     btnReplace.addEventListener('click', this.onReplace)
+    btnCleanActions.addEventListener('click', this.cleanActions);
   }
   addProduct = () => {
     let passAdd = false;
@@ -61,7 +63,7 @@ class Inventario {
   // Funciona para agregar los datos a la tabla (sin iterar) tal vez con 1 se registran normal y con -1 se registra inverso? (con el row?)
   listing = () => {
     let product;
-    this.remakeTable()
+    this.cleanTable()
     if(this.inventary.length !== 0){
       for(var i=0; i<this.inventary.length; i++){
         if(this.inventary[i] !== null){
@@ -76,7 +78,7 @@ class Inventario {
   listInverse = () => {
     var max = this.inventary.length
     var count = max
-    this.remakeTable()
+    this.cleanTable()
     if(this.inventary.length !== 0){
       for(var i=0; max>i; i++){
         count--
@@ -87,7 +89,7 @@ class Inventario {
     }
     this.tellActions.tell('Enlistado inverso') 
 }
-remakeTable(){
+cleanTable(){
   let table = document.querySelector("#list");
   table.innerHTML = '<tr><th id="product">Producto</th><th id="id">ID</th><th id="amount">Cantidad</th><th id="price">Precio</th><th id="totalPrice">Precio Total</th></tr>'
 }
@@ -111,6 +113,10 @@ remakeTable(){
         colMount.innerHTML = product.getMount();
         colPrice.innerHTML = product.getPrice();
         colTotalPrice.innerHTML = product.getMount() * product.getPrice();
+  }
+  cleanActions = () =>{
+    let table = document.querySelector('#tableActions');
+    table.innerHTML = "<tr><th>Actions</th></tr>"
   }
   browseProduct = () => {
     let inpIdToBrowse = document.querySelector("#idBrowser");
