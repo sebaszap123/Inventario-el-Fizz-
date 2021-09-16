@@ -20,7 +20,7 @@ class Inventario {
     let passAdd = false;
     let product = Product.createProduct();
     if(product == isNaN){
-      Swal.fire('Ups...','solo se admiten enteros para el id o codigo', 'error');
+      Swal.fire('Ups...','solo se admiten enteros para el id o codigo y mayores a 0', 'error');
       return false;
     }
     if (product) {
