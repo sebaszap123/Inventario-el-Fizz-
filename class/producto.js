@@ -27,7 +27,7 @@ export default class Product {
     let name = inpName.value;
     let mount = inpMount.value;
     let price = inpPrice.value;
-    if((id % 1 == 0 && id > 0)) {
+    if((id % 1 == 0 && id >= 0)) {
       if (id && name && mount && price) {
         let valorMercancia = mount * price;
         let product = new Product(id, name, mount, price, valorMercancia);
