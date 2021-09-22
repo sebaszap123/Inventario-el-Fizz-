@@ -21,6 +21,8 @@
             <div class="field">
               <label>codigó de producto:</label>
               <input id="id" type="number" size="35" />
+              <input class ="button" id="btnBrowse" type="button" value="Buscar" />
+              <input class ="button" id="btnDelete" type="button" value="Eliminar" />
             </div>
             <div class="field">
               <label>Nombre:</label>
@@ -36,50 +38,29 @@
             </div>
             <div class="field">
               <input class="button" id="btnRegister" type="button" value="Registrar" />
-              <input class="button" id="btnReplace" type="button" value="Modificar" />
+              <br>
+              <input class="button" id="btnInsert" type="button" value="Insertar" />
+              <input id="insertValue" type="number" placeholder="Valor a insertar">
+              <br>
+              <input class="button" id="btnList" type="button" value="Listar" />
+              <input class="button" id="btnListInverse" type="button" value="Listar Inverso" />
+            </div>
+            <div class="field">
+              <h2>Tabla productos</h2>
+              <table id="tbProducts">
+                <tr><th id="product">Producto</th><th id="id">ID</th><th id="amount">Cantidad</th><th id="price">Precio</th><th id="totalPrice">Precio Total</th></tr>
+              </table>
+            </div>
             </div>
           </form>
         </div>
       </div>
-
       <div class="right">
-        <h2>Inventario</h2>
         <div class="content-info">
-          <table id="registry">
-            <tr>
-              <th>Codigo de producto</th>
-              <td><input id="idBrowser" type="number" /></td>
-              <td id="btns"></td>
-            </tr>
-            <tr>
-            <tr>
-              <th>Listar</th>
-              <td id="btnList"></td>
-            </tr>
-          </table>
+          <h2>Acciones</h2>
+          <div id="actions"></div>
         </div>
       </div>
-    </div>
-    <div class="divData">
-      <div class="left">
-        <input class="button" type="button" id="cleanActions" value="Limpiar Acciones">
-        <table id="tableActions">
-          <tr><th>Actions</th></tr>
-        </table>
-      </div>
-    </div>
-    <div class="right">
-      <table id="list">
-        <tr>
-          <th id="product">Producto</th>
-          <th id="id">ID</th>
-          <th id="amount">Cantidad</th>
-          <th id="price">Precio</th>
-          <th id="totalPrice">Precio Total</th>
-        </tr>
-      </table>
-    </div>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    <script src="class/inventario.js" type="module"></script>
+    <script src="app.js" type="module"></script>
   </body>
 </html>
